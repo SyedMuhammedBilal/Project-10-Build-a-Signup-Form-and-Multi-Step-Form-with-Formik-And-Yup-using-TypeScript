@@ -6,7 +6,8 @@ import { savedValues } from '../../Stepper/Stepper';
 
 interface Props {
   savedValues: [savedValues, React.Dispatch<React.SetStateAction<savedValues>>],
-  handleNext: () => void
+  handleNext: () => void,
+  handleBack: () => void
 }
 
 const ContactSchema = Yup.object().shape({
@@ -16,12 +17,12 @@ const ContactSchema = Yup.object().shape({
     .required('Required')
 });
 
-const Contact:React.FC<Props> = ({ savedValues, handleNext }) => {
+const Contact:React.FC<Props> = ({ savedValues, handleNext, handleBack }) => {
   return (
     <div className='form'>
       <Formik
         initialValues={{
-          message: '',
+          message: savedValues[0].message,
         }}
         validationSchema={ContactSchema}
         onSubmit={(values) => {
@@ -46,7 +47,8 @@ const Contact:React.FC<Props> = ({ savedValues, handleNext }) => {
                 <div style={{ color: '#ff0047' }}>{errors.message}</div>
               ) : null
             }
-            <button type="submit" className='sign-btn'>Submit</button>
+            <button type="submit" className='sign-btn'>Next</button>
+            <button onClick={handleBack} type="button" className='sign-btn'>Back</button>
           </Form>
         )}
       </Formik>

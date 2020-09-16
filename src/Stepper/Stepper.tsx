@@ -5,6 +5,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Signup from '../Components/Signup/Signup';
 import Contact from '../Components/Contact/Contact';
+import Submit from '../Components/Submit/Submit';
 
 export interface savedValues {
   firstName: string,
@@ -53,9 +54,9 @@ export default function HorizontalLabelPositionBelowStepper() {
       case 0:
         return <Signup savedValues={savedValues} handleNext={handleNext} />;
       case 1:
-        return <Contact savedValues={savedValues}  handleNext={handleNext} />;
+        return <Contact savedValues={savedValues}  handleNext={handleNext} handleBack={handleBack} />;
       case 2: 
-        return 'This is the bit I really care about!';
+        return <Submit savedValues={savedValues} handleBack={handleBack} />
       default:
         return 'Error ';
     }

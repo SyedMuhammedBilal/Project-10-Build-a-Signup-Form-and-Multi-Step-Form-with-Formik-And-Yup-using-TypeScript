@@ -31,9 +31,9 @@ const Signup:React.FC<Props> = ({ savedValues, handleNext }) => {
     <div className='form'>
       <Formik
         initialValues={{
-          firstName: '',
-          lastName: '',
-          email: ''
+          firstName: savedValues[0].firstName,
+          lastName: savedValues[0].lastName,
+          email: savedValues[0].email
         }}
         
         validationSchema={SignupSchema}
