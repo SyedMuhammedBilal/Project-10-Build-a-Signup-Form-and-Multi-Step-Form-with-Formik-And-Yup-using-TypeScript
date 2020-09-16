@@ -2,7 +2,12 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import './Signup.css';
+import { savedValues } from '../../Stepper/Stepper';
 
+interface Props {
+  savedValues: [savedValues, React.Dispatch<React.SetStateAction<savedValues>>],
+  handleNext: () => void
+};
 
 const SignupSchema = Yup.object().shape({
   
@@ -16,29 +21,31 @@ const SignupSchema = Yup.object().shape({
     .max(50, 'Too Long!')
     .required('Required'),
   
-    password: Yup.string()
-    .min(8, 'Password must be 8 characters long!')
-    .max(50, 'Too long!')
-    .required('Required'),
-  
-    email: Yup.string()
+  email: Yup.string()
     .email('Invalid email')
     .required('Required'),
 });
 
-const Signup = (submit: any) => {
+const Signup:React.FC<Props> = ({ savedValues, handleNext }) => {
   return (
     <div className='form'>
       <Formik
         initialValues={{
           firstName: '',
           lastName: '',
-          password: '',
-          email: '',
+          email: ''
         }}
+        
         validationSchema={SignupSchema}
+        
         onSubmit={(values) => {
-          submit(1)
+          savedValues[1]({
+            ...savedValues[0],
+            firstName: values.firstName,
+            lastName: values.lastName,
+            email: values.email,
+          })
+          handleNext()
           console.log(values);
         }}
       >
@@ -74,7 +81,6 @@ const Signup = (submit: any) => {
             {
               errors.email && touched.email ? <div style={{ color: '#ff0047' }}>{errors.email}</div> : null
             }
-
             <button type="submit" className='sign-btn'>Signup</button>
             <p className='forget'>Forgot Password? <i>Click here</i></p>
           </Form>

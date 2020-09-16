@@ -3,10 +3,15 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import Signup from '../Components/Signup/Signup';
 import Contact from '../Components/Contact/Contact';
+
+export interface savedValues {
+  firstName: string,
+  lastName: string,
+  email: any,
+  message: string
+};
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,24 +32,34 @@ function getSteps() {
   return ['Your Info', 'Your Message', 'Sent  '];
 }
 
-
 export default function HorizontalLabelPositionBelowStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
-        
-  function getStepContent(stepIndex: number, setStep: any) {
-          switch (stepIndex) {
-            case 0:
-              return <Signup submit={setStep} />;
-            case 1:
-              return <Contact submit={setStep} />;
-            case 2:
-              return 'This is the bit I really care about!';
-            default:
-              return 'Error ';
-          }
-        }
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const savedValues = React.useState({ firstName: '', lastName: '', email: '', message: '' });
+  console.log(savedValues[0]);
+
+  function getStepContent(stepIndex: number) {
+    switch (stepIndex) {
+      case 0:
+        return <Signup savedValues={savedValues} handleNext={handleNext} />;
+      case 1:
+        return <Contact savedValues={savedValues}  handleNext={handleNext} />;
+      case 2: 
+        return 'This is the bit I really care about!';
+      default:
+        return 'Error ';
+    }
+  }
 
   return (
     <div className={classes.root}>
@@ -56,7 +71,7 @@ export default function HorizontalLabelPositionBelowStepper() {
         ))}
       </Stepper>
       {
-        getStepContent(activeStep, setActiveStep)
+        getStepContent(activeStep)
       }
     </div>
   );

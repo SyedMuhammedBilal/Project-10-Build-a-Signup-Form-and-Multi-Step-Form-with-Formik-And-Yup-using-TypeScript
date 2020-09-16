@@ -2,6 +2,12 @@ import React from 'react';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import '../Signup/Signup.css';
+import { savedValues } from '../../Stepper/Stepper';
+
+interface Props {
+  savedValues: [savedValues, React.Dispatch<React.SetStateAction<savedValues>>],
+  handleNext: () => void
+}
 
 const ContactSchema = Yup.object().shape({
   message: Yup.string()
@@ -10,7 +16,7 @@ const ContactSchema = Yup.object().shape({
     .required('Required')
 });
 
-const Contact = ({submit}:any) => {
+const Contact:React.FC<Props> = ({ savedValues, handleNext }) => {
   return (
     <div className='form'>
       <Formik
@@ -19,7 +25,11 @@ const Contact = ({submit}:any) => {
         }}
         validationSchema={ContactSchema}
         onSubmit={(values) => {
-          submit(2)
+          savedValues[1]({
+            ...savedValues[0],
+            message: values.message
+          })
+          handleNext()
           console.log(values);
         }}
       >
