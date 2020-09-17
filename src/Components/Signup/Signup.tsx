@@ -51,7 +51,7 @@ const Signup:React.FC<Props> = ({ savedValues, handleNext }) => {
       >
         {({ errors, touched }) => (
           <Form autoComplete='off' className='Form'>
-            <h1>Signup</h1>
+            <h1>Contact</h1>
             <Field
               name="firstName"
               className='inputBox'
@@ -81,7 +81,7 @@ const Signup:React.FC<Props> = ({ savedValues, handleNext }) => {
             {
               errors.email && touched.email ? <div style={{ color: '#ff0047' }}>{errors.email}</div> : null
             }
-            <button type="submit" className='sign-btn'>Signup</button>
+            <button type="submit" className='sign-btn'>Next</button>
             <p className='forget'>Forgot Password? <i>Click here</i></p>
           </Form>
         )}

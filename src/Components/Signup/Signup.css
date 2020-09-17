@@ -19,6 +19,95 @@
                 5px 5px 15px rgba(0, 0, 0, 0.5);
 }
 
+@media (max-width: 437px) {
+    .Form {
+        width: 320px;
+    }
+    .Form h1 {
+        font-size: 27px;
+        letter-spacing: 1px;
+    }
+}
+
+@media (max-width: 414px) {
+    .Form {
+        width: 270px !important;
+    }
+    .Form h1 {
+        font-size: 25px !important;
+        letter-spacing: 1px;
+    }
+    .Form .inputBox {
+        height: 42px !important;
+        margin-top: 24px !important;
+    }
+}
+
+@media (max-width: 375px) {
+    .Form {
+        width: 248px !important;
+    }
+    .Form h1 {
+        font-size: 24px !important;
+        letter-spacing: 1px;
+    }
+    .Form .inputBox {
+        height: 40px !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .Form {
+        width: 255px;
+    }
+    .Form h1 {
+        font-size: 21px;
+        letter-spacing: 0.5px;
+    }
+    .Form .inputBox {
+        height: 43px;
+        margin-top: 27px;
+        font-size: 16px;
+    }
+    .Form .sign-btn {
+        height: 43px;
+        margin-top: 28px;
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 768px) {
+    .Form {
+        width: 335px;
+    }
+    .Form h1 {
+        font-size: 28px;
+    }
+    .Form .inputBox {
+        height: 52px;
+    }
+    .Form .sign-btn {
+        height: 52px;   
+    }
+}
+
+@media (max-width: 768px) {
+    .Form {
+        width: 435px;
+    }
+    .Form h1 {
+        font-size: 38px;
+    }
+    .Form .inputBox {
+        height: 62px;
+        font-size: 21px;
+    }
+    .Form .sign-btn {
+        height: 62px; 
+        font-size-adjust: 23px;  
+    }
+}
+
 .Form h1 {
     color: #c7c7c7;
     text-transform: uppercase;
